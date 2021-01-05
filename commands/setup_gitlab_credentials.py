@@ -1,12 +1,9 @@
 import os
 from configparser import ConfigParser
+from config.keys import CONFIG_PATH, GITLAB, ACCESS_TOKEN
 
 
 def setup(args):
-  CONFIG_PATH = '../config.ini'
-  GITLAB = 'gitlab'
-  ACCESS_TOKEN = 'access_token'
-
   config = ConfigParser()
   config.read(CONFIG_PATH)
 

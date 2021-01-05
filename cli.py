@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import argparse
+from core import Config
 import sys
 import importlib
 
 
-MODULES = ['setup_gitlab_credentials']
+MODULES = ['setup_gitlab_credentials', 'list_repositories']
 
 def _build_parser() -> argparse.ArgumentParser:
   parser = argparse.ArgumentParser()
@@ -30,8 +31,13 @@ def main():
   if args.func is None:
     parser.print_usage()
     sys.exit(1)
+
+  config = Config()
   
-  args.func(args)
+  if config.token:  
+    args.func(args, config)
+  else:
+    args.func(args)
 
 
 if __name__ == "__main__":
